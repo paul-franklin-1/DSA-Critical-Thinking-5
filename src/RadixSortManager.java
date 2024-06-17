@@ -58,14 +58,4 @@ public class RadixSortManager {
         }
         return maxValue;
     }
-    /**
-     * Entry point of the program. Sorts an array of Integer values using Radix Sort
-     * algorithm and prints the sorted array.
-     */
-    public static void main(String[] args) {
-        Integer mainArray[] = { 783, 99, 472, 182, 264, 543, 356, 295, 692, 491, 94 };
-        int length = mainArray.length;
-        radixSorter(mainArray, length);
-        arrayPrint(mainArray, length);
-    }
 }
