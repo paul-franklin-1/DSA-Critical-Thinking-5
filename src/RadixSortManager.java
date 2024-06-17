@@ -16,7 +16,7 @@ public class RadixSortManager {
      * significant digits and ending with the most significant digits
      */
     static void digitSort(Integer mainArray[], int length, int exp) {
-        Integer[] convertedArray = new Integer[length]; // output array
+        Integer[] convertedCount = new Integer[length]; // output array
         Integer[] digitCount = new Integer[10];
         Arrays.fill(digitCount, 0);
 
@@ -29,11 +29,11 @@ public class RadixSortManager {
         }
 
         for (int j = length - 1; j >= 0; j--) {
-            convertedArray[digitCount[(mainArray[j] / exp) % 10] - 1] = mainArray[j];
+            convertedCount[digitCount[(mainArray[j] / exp) % 10] - 1] = mainArray[j];
             digitCount[(mainArray[j] / exp) % 10]--;
         }
 
-        System.arraycopy(convertedArray, 0, mainArray, 0, length);
+        System.arraycopy(convertedCount, 0, mainArray, 0, length);
     }
 
     /**
