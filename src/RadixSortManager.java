@@ -34,7 +34,7 @@ public class RadixSortManager {
                 q++;
             }
         }
-        if (falseForNeg){
+        if (!falseForNeg){
             return negativeList;
         }
         else{return nonNegativeList;
