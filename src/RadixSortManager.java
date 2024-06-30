@@ -10,7 +10,7 @@ public class RadixSortManager {
             System.out.print(mainArray[j] + " ");
         }
     }
-    static Integer[] negativeSeparator(Integer[] integerArray, int length, boolean falseForNeg) {
+    static Integer[] negativeSeparator(Integer[] integerArray, int length, boolean falseForNegList) {
         int negativeCount = 0;
         Integer element = null;
         for (int i = 0; i < length; i++) {
@@ -34,7 +34,7 @@ public class RadixSortManager {
                 q++;
             }
         }
-        if (!falseForNeg){
+        if (falseForNegList==false){
             return negativeList;
         }
         else{return nonNegativeList;

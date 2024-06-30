@@ -11,8 +11,8 @@ public class RadixSortTester {
      * @param args
      */
     public static void main(String[] args) {
-        RadixSortManager testMyRadix = new RadixSortManager();
         Integer[] mainArray = new Integer[10];
+        int length = mainArray.length;
         boolean x = true;
         System.out.println("Enter an array of 10 Integers:");
         while(x){
@@ -36,7 +36,6 @@ public class RadixSortTester {
                 x = false;
             }
         }
-        int length = mainArray.length;
         Integer[] negativeList = RadixSortManager.negativeSeparator(mainArray,length,false);
         Integer[] nonNegativeList = RadixSortManager.negativeSeparator(mainArray,length,true);
         Integer[] finalArray = new Integer[10];
