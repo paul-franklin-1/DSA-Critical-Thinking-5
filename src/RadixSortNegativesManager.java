@@ -13,6 +13,7 @@ public class RadixSortNegativesManager {
         int posIndex = 0;
 
         for (int i = 0; i < length; i++) {
+            assert mainArray != null;
             if (mainArray[i] < 0) {
                 negativeArray[negIndex++] = mainArray[i];
             } else {
@@ -34,8 +35,8 @@ public class RadixSortNegativesManager {
             mergedArray[p++] = negativeArray[i];
         }
 
-        for (int i = 0; i < nonNegativeArray.length; i++) {
-            mergedArray[p++] = nonNegativeArray[i];
+        for (Integer integer : nonNegativeArray) {
+            mergedArray[p++] = integer;
         }
 
         return mergedArray;

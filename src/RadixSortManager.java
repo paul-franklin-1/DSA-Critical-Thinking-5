@@ -10,13 +10,15 @@ public class RadixSortManager {
             System.out.println("mainArray cannot be null.");
         }
         for (int j = 0; j < length; j++) {
-            System.out.print(mainArray[j] + " ");
+            if (mainArray != null) {
+                System.out.print(mainArray[j] + " ");
+            }
         }
         System.out.println();
     }
 
     static void digitSort(Integer[] mainArray, int length, int exp) {
-        if (mainArray==null){
+        if (mainArray == null) {
             System.out.println("mainArray cannot be null.");
         }
         Integer[] convertedCount = new Integer[length]; // output array
@@ -24,19 +26,24 @@ public class RadixSortManager {
         Arrays.fill(digitCount, 0);
 
         for (int j = 0; j < length; j++) {
-            digitCount[(mainArray[j] / exp) % 10]++;
+            if (mainArray != null) {
+                digitCount[(mainArray[j] / exp) % 10]++;
+            }
         }
-
-        for (int j = 1; j < 10; j++) {
-            digitCount[j] += digitCount[j - 1];
+        if(mainArray!=null) {
+            for (int j = 1; j < 10; j++) {
+                digitCount[j] += digitCount[j - 1];
+            }
         }
-
+        if(mainArray!=null){
         for (int j = length - 1; j >= 0; j--) {
             convertedCount[digitCount[(mainArray[j] / exp) % 10] - 1] = mainArray[j];
             digitCount[(mainArray[j] / exp) % 10]--;
+            }
         }
-
-        System.arraycopy(convertedCount, 0, mainArray, 0, length);
+        if (mainArray != null) {
+            System.arraycopy(convertedCount, 0, mainArray, 0, length);
+        }
     }
 
     /**
@@ -44,12 +51,11 @@ public class RadixSortManager {
      * and Integer array returned by digitSort method
      */
     static void radixSorter(Integer[] array, int length) {
-        if (array==null){
-             System.out.println("Array cannot be null.");
-        }
-        int m = arrayMax(array, length);
-        for (int exp = 1; m / exp > 0; exp *= 10) {
-            digitSort(array, length, exp);
+        if (array!=null){
+            int m = arrayMax(array, length);
+            for (int exp = 1; m / exp > 0; exp *= 10) {
+                digitSort(array, length, exp);
+            }
         }
     }
 
@@ -57,15 +63,15 @@ public class RadixSortManager {
      * Finds the maximum value in an array of Integer values.
      */
     static int arrayMax(Integer[] array, int length) {
-        if (array==null){
-            System.out.println("Array cannot be null.");
+        if (array!=null) {
+            int maxValue = array[0];
+            for (int j = 1; j < length; j++) {
+                if (array[j] > maxValue) {
+                    maxValue = array[j];
+                }
+            }
+            return maxValue;
         }
-        assert array != null;
-        int maxValue = array[0];
-        for (int j = 1; j < length; j++) {
-            if (array[j] > maxValue) {
-                maxValue = array[j];}
-        }
-        return maxValue;
+    return 0;
     }
 }

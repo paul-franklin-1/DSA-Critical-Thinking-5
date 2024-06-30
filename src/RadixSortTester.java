@@ -6,13 +6,8 @@ import java.util.Scanner;
  * sorts the array using radix sort, and prints the sorted array.
  */
 public class RadixSortTester {
-    private static boolean containsNegatives;
-    private static Integer[] finalArray;
-
     /**
      * main method and test entry point
-     *
-     * @param args
      */
     public static void main(String[] args) {
         Integer[] mainArray = new Integer[10];
@@ -28,38 +23,29 @@ public class RadixSortTester {
                     mainArray[i] = newElement;
                 }
             }
-            if (mainArray == null) {
-                System.out.println("Alert: Your main array cannot be null.");
+            mainArrayCopy = mainArray;
+            boolean containsNegatives = false;
+            for (int i = 0; i < length; i++) {
+                if (mainArray[i] < 0) {
+                    containsNegatives = true;
+                    break;
+                }
             }
-            else if (mainArray.length == 0) {
-                System.out.println("Alert: Your main array cannot be empty.");
+            if (containsNegatives) {
+                RadixSortNegativesManager.negativeSeparator(mainArray, length);
+                RadixSortNegativesManager.sortNegatives();
+                Integer[] finalArray = RadixSortNegativesManager.mergeNegatives();
+                System.out.print("Unsorted array: ");
+                RadixSortManager.arrayPrint(mainArrayCopy, length);
+                System.out.print("Sorted array: ");
+                RadixSortManager.arrayPrint(finalArray, length);
+            } else {
+                RadixSortManager.radixSorter(mainArray, length);
+                System.out.print("Unsorted array: ");
+                RadixSortManager.arrayPrint(mainArrayCopy, length);
+                System.out.print("Sorted array: ");
+                RadixSortManager.arrayPrint(mainArray, length);
             }
-            else {
-                break;
-            }
-        }
-        mainArrayCopy = mainArray;
-        containsNegatives = false;
-        for (int i = 0; i < length; i++) {
-            if (mainArray[i] < 0) {
-                containsNegatives = true;
-                break;
-            }
-        }
-        if (containsNegatives) {
-            RadixSortNegativesManager.negativeSeparator(mainArray, length);
-            RadixSortNegativesManager.sortNegatives();
-            finalArray = RadixSortNegativesManager.mergeNegatives();
-            System.out.print("Unsorted array: ");
-            RadixSortManager.arrayPrint(mainArrayCopy, length);
-            System.out.print("Sorted array: ");
-            RadixSortManager.arrayPrint(finalArray, length);
-        } else {
-            RadixSortManager.radixSorter(mainArray, length);
-            System.out.print("Unsorted array: ");
-            RadixSortManager.arrayPrint(mainArrayCopy, length);
-            System.out.print("Sorted array: ");
-            RadixSortManager.arrayPrint(mainArray, length);
         }
     }
 }
