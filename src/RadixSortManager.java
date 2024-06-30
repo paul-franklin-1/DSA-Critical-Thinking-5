@@ -10,11 +10,36 @@ public class RadixSortManager {
             System.out.print(mainArray[j] + " ");
         }
     }
-
-    /**
-     * Sorts an array of Integer values by sorting digits, starting with the least
-     * significant digits and ending with the most significant digits
-     */
+    static Integer[] negativeSeparator(Integer[] integerArray, int length, int charge) {
+        int negativeCount = 0;
+        Integer element = null;
+        for (int i = 0; i < length; i++) {
+            element = integerArray[i];
+            if (element < 0) {
+                negativeCount++;
+            }
+        }
+        Integer[] negativeList = new Integer[negativeCount];
+        Integer[] nonNegativeList = new Integer[10 - negativeCount];
+        element = null;
+        int p = 0;
+        int q = 0;
+        for (int i = 0; i < length; i++) {
+            element = integerArray[i];
+            if (element < 0) {
+                negativeList[p] = element * -1;
+                p++;
+            } else {
+                nonNegativeList[q] = element;
+                q++;
+            }
+        }
+        if (charge < 0){
+            return negativeList;
+        }
+        else{return nonNegativeList;
+        }
+    }
     static void digitSort(Integer mainArray[], int length, int exp) {
         Integer[] convertedCount = new Integer[length]; // output array
         Integer[] digitCount = new Integer[10];
@@ -46,7 +71,6 @@ public class RadixSortManager {
             digitSort(integerArray, length, exp);
         }
     }
-
     /**
      * Finds the maximum value in an array of Integer values.
      */
