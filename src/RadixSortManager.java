@@ -10,36 +10,7 @@ public class RadixSortManager {
             System.out.print(mainArray[j] + " ");
         }
     }
-    static Integer[] negativeSeparator(Integer[] integerArray, int length, boolean falseForNegList) {
-        int negativeCount = 0;
-        Integer element = null;
-        for (int i = 0; i < length; i++) {
-            element = integerArray[i];
-            if (element < 0) {
-                negativeCount++;
-            }
-        }
-        Integer[] negativeList = new Integer[negativeCount];
-        Integer[] nonNegativeList = new Integer[10 - negativeCount];
-        element = null;
-        int p = 0;
-        int q = 0;
-        for (int i = 0; i < length; i++) {
-            element = integerArray[i];
-            if (element < 0) {
-                negativeList[p] = element * -1;
-                p++;
-            } else {
-                nonNegativeList[q] = element;
-                q++;
-            }
-        }
-        if (falseForNegList==false){
-            return negativeList;
-        }
-        else{return nonNegativeList;
-        }
-    }
+
     static void digitSort(Integer mainArray[], int length, int exp) {
         Integer[] convertedCount = new Integer[length]; // output array
         Integer[] digitCount = new Integer[10];
@@ -71,24 +42,7 @@ public class RadixSortManager {
             digitSort(integerArray, length, exp);
         }
     }
-    public static Integer[] negMerge (Integer[] nonNegativeList, Integer[] negativeList){
-        Integer[] auxArray = new Integer[10];
-        int nonNegLength = nonNegativeList.length;
-        int negLength = negativeList.length;
-        radixSorter(nonNegativeList, nonNegLength);
-        radixSorter(negativeList, negLength);
-        int p = 0;
-        for (int i=negLength-1;i>=0;i--){
-            auxArray[p] =negativeList[i]*-1;
-            p++;
-        }
-        p = negLength;
-        for(int i = 0;i<nonNegLength;i++) {
-            auxArray[p] = nonNegativeList[i];
-            p++;
-        }
-        return auxArray;
-    }
+
     /**
      * Finds the maximum value in an array of Integer values.
      */

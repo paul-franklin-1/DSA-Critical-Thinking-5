@@ -36,10 +36,10 @@ public class RadixSortTester {
                 x = false;
             }
         }
-        Integer[] negativeList = RadixSortManager.negativeSeparator(mainArray,length,false);
-        Integer[] nonNegativeList = RadixSortManager.negativeSeparator(mainArray,length,true);
+        Integer[] negativeArray = RadixSortManager.negativeSeparator(mainArray,length,false);
+        Integer[] nonNegativeArray = RadixSortManager.negativeSeparator(mainArray,length,true);
         Integer[] finalArray = new Integer[10];
-        finalArray = RadixSortManager.negMerge(nonNegativeList, negativeList);
+        finalArray = RadixSortManager.negMerge(nonNegativeArray, negativeArray);
         System.out.print("Unsorted array: ");
         RadixSortManager.arrayPrint(mainArray, length);
         System.out.println();
