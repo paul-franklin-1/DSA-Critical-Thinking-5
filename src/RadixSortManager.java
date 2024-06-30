@@ -71,25 +71,24 @@ public class RadixSortManager {
             digitSort(integerArray, length, exp);
         }
     }
-    public Integer[] negMerge (Integer[] negativeList, Integer[] nonNegativeList){
+    public static Integer[] negMerge (Integer[] nonNegativeList, Integer[] negativeList){
+        Integer[] auxArray = new Integer[10];
         int nonNegLength = nonNegativeList.length;
         int negLength = negativeList.length;
-        testMyRadix.radixSorter(nonNegativeList, nonNegLength);
-        testMyRadix.radixSorter(negativeList, negLength);
+        radixSorter(nonNegativeList, nonNegLength);
+        radixSorter(negativeList, negLength);
         int p = 0;
         for (int i=negLength-1;i>=0;i--){
-            mainArray[p] =negativeList[i]*-1;
+            auxArray[p] =negativeList[i]*-1;
             p++;
         }
         p = negLength;
         for(int i = 0;i<nonNegLength;i++) {
-            mainArray[p] = nonNegativeList[i];
+            auxArray[p] = nonNegativeList[i];
             p++;
         }
-
+        return auxArray;
     }
-
-
     /**
      * Finds the maximum value in an array of Integer values.
      */

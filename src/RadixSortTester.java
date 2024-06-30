@@ -39,9 +39,11 @@ public class RadixSortTester {
         int length = mainArray.length;
         Integer[] negativeList = RadixSortManager.negativeSeparator(mainArray,length,false);
         Integer[] nonNegativeList = RadixSortManager.negativeSeparator(mainArray,length,true);
+        Integer[] finalArray = new Integer[10];
+        finalArray = RadixSortManager.negMerge(nonNegativeList, negativeList);
         System.out.print("Unsorted array as entered: ");
         testMyRadix.arrayPrint(mainArray, length);
         System.out.print("Sorted array: ");
-        testMyRadix.arrayPrint(mainArray, length);
+        testMyRadix.arrayPrint(finalArray, length);
     }
 }
