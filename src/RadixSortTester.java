@@ -37,25 +37,10 @@ public class RadixSortTester {
             }
         }
         int length = mainArray.length;
-        Integer[] negativeList = RadixSortManager.negativeSeparator(mainArray,length,-1);
-        Integer[] nonNegativeList = RadixSortManager.negativeSeparator(mainArray,length,0);
-        int nonNegLength = nonNegativeList.length;
-        int negLength = negativeList.length;
+        Integer[] negativeList = RadixSortManager.negativeSeparator(mainArray,length,false);
+        Integer[] nonNegativeList = RadixSortManager.negativeSeparator(mainArray,length,true);
         System.out.print("Unsorted array as entered: ");
         testMyRadix.arrayPrint(mainArray, length);
-        System.out.println();
-        testMyRadix.radixSorter(nonNegativeList, nonNegLength);
-        testMyRadix.radixSorter(negativeList, negLength);
-        int p = 0;
-        for (int i=negLength-1;i>=0;i--){
-            mainArray[p] =negativeList[i]*-1;
-            p++;
-        }
-        p = negLength;
-        for(int i = 0;i<nonNegLength;i++) {
-            mainArray[p] = nonNegativeList[i];
-            p++;
-        }
         System.out.print("Sorted array: ");
         testMyRadix.arrayPrint(mainArray, length);
     }

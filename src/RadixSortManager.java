@@ -10,7 +10,7 @@ public class RadixSortManager {
             System.out.print(mainArray[j] + " ");
         }
     }
-    static Integer[] negativeSeparator(Integer[] integerArray, int length, int charge) {
+    static Integer[] negativeSeparator(Integer[] integerArray, int length, boolean falseForNeg) {
         int negativeCount = 0;
         Integer element = null;
         for (int i = 0; i < length; i++) {
@@ -34,7 +34,7 @@ public class RadixSortManager {
                 q++;
             }
         }
-        if (charge < 0){
+        if (falseForNeg){
             return negativeList;
         }
         else{return nonNegativeList;
@@ -71,6 +71,25 @@ public class RadixSortManager {
             digitSort(integerArray, length, exp);
         }
     }
+    public Integer[] negMerge (Integer[] negativeList, Integer[] nonNegativeList){
+        int nonNegLength = nonNegativeList.length;
+        int negLength = negativeList.length;
+        testMyRadix.radixSorter(nonNegativeList, nonNegLength);
+        testMyRadix.radixSorter(negativeList, negLength);
+        int p = 0;
+        for (int i=negLength-1;i>=0;i--){
+            mainArray[p] =negativeList[i]*-1;
+            p++;
+        }
+        p = negLength;
+        for(int i = 0;i<nonNegLength;i++) {
+            mainArray[p] = nonNegativeList[i];
+            p++;
+        }
+
+    }
+
+
     /**
      * Finds the maximum value in an array of Integer values.
      */
