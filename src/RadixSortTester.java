@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -11,19 +12,20 @@ public class RadixSortTester {
      */
     public static void main(String[] args) {
         Integer[] mainArray = new Integer[10];
-        Integer[] mainArrayCopy = new Integer[10];
         int length = mainArray.length;
+
         System.out.println("Enter an array of 10 Integers:");
-        while (true) {
-            try (Scanner scnr = new Scanner(System.in)) {
-                for (int i = 0; i < 10; i++) {
-                    System.out.println("Enter value #" + (i + 1) + ":\n");
-                    String scannedValue = scnr.nextLine();
-                    Integer newElement = Integer.valueOf(scannedValue);
-                    mainArray[i] = newElement;
-                }
+
+        try (Scanner scnr = new Scanner(System.in)) {  // Using try-with-resources for Scanner
+            for (int i = 0; i < 10; i++) {
+                System.out.println("Enter value #" + (i + 1) + ":");
+                String scannedValue = scnr.nextLine();
+                Integer newElement = Integer.valueOf(scannedValue);
+                mainArray[i] = newElement;
             }
-            mainArrayCopy = mainArray;
+
+            Integer[] mainArrayCopy = Arrays.copyOf(mainArray, mainArray.length);  // Used Arrays.copyOf to create a copy of the array
+
             boolean containsNegatives = false;
             for (int i = 0; i < length; i++) {
                 if (mainArray[i] < 0) {
@@ -31,6 +33,7 @@ public class RadixSortTester {
                     break;
                 }
             }
+
             if (containsNegatives) {
                 RadixSortNegativesManager.negativeSeparator(mainArray, length);
                 RadixSortNegativesManager.sortNegatives();
@@ -38,7 +41,7 @@ public class RadixSortTester {
                 System.out.print("Unsorted array: ");
                 RadixSortManager.arrayPrint(mainArrayCopy, length);
                 System.out.print("Sorted array: ");
-                RadixSortManager.arrayPrint(finalArray, length);
+                RadixSortManager.arrayPrint(finalArray, finalArray.length);  // Use finalArray.length
             } else {
                 RadixSortManager.radixSorter(mainArray, length);
                 System.out.print("Unsorted array: ");
@@ -46,7 +49,8 @@ public class RadixSortTester {
                 System.out.print("Sorted array: ");
                 RadixSortManager.arrayPrint(mainArray, length);
             }
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter valid integers.");
         }
     }
 }
-

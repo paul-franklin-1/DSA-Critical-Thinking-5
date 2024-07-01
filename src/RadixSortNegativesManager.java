@@ -1,10 +1,16 @@
+import java.util.Arrays;
+
 public class RadixSortNegativesManager {
     private static Integer[] negativeArray;
-    private static Integer[] nonNegativeArray;
+    public static Integer[] nonNegativeArray;
+    private static int negCount = 0;
+    private static int posCount = 0;
 
     public static void negativeSeparator(Integer[] mainArray, int length) {
-        if (mainArray==null){
-            System.out.println("mainArray cannot be null.");
+        if (mainArray == null || length == 0) {
+            negativeArray = new Integer[0];
+            nonNegativeArray = new Integer[0];
+            return;
         }
         negativeArray = new Integer[length];
         nonNegativeArray = new Integer[length];
@@ -13,17 +19,30 @@ public class RadixSortNegativesManager {
         int posIndex = 0;
 
         for (int i = 0; i < length; i++) {
-            assert mainArray != null;
             if (mainArray[i] < 0) {
                 negativeArray[negIndex++] = mainArray[i];
+                negCount++;
             } else {
                 nonNegativeArray[posIndex++] = mainArray[i];
+                posCount++;
             }
         }
+
+        negativeArray = Arrays.copyOf(negativeArray, negCount); // Trim array to actual size
+        nonNegativeArray = Arrays.copyOf(nonNegativeArray, posCount); // Trim array to actual size
     }
 
     public static void sortNegatives() {
-        RadixSortManager.radixSorter(negativeArray, negativeArray.length);
+        if (negCount > 0) {
+            // Convert negative values to positive, sort, then revert to negative
+            for (int i = 0; i < negCount; i++) {
+                negativeArray[i] = -negativeArray[i];
+            }
+            RadixSortManager.radixSorter(negativeArray, negativeArray.length);
+            for (int i = 0; i < negCount; i++) {
+                negativeArray[i] = -negativeArray[i];
+            }
+        }
     }
 
     public static Integer[] mergeNegatives() {
@@ -39,6 +58,6 @@ public class RadixSortNegativesManager {
             mergedArray[p++] = integer;
         }
 
-        return mergedArray;
+        return Arrays.copyOf(mergedArray, p); // Trim merged array to actual size
     }
 }
