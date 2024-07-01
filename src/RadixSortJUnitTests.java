@@ -18,10 +18,7 @@ public class RadixSortJUnitTests {
         Integer[] arr2 = {-1, 5, 0, -10, 3, 45, -34, 4, -11, -39};
         Integer[] expected2 = {-39, -34, -11, -10, -1, 0, 3, 4, 5, 45};
 
-        RadixSortNegativesManager.negativeSeparator(arr2, arr2.length);
-        RadixSortNegativesManager.sortNegatives();
-        RadixSortManager.radixSorter(RadixSortNegativesManager.nonNegativeArray, RadixSortNegativesManager.nonNegativeArray.length);
-        Integer[] finalArray = RadixSortNegativesManager.mergeNegatives();
+        Integer[] finalArray = RadixSortNegativesManager.sortNegativesAndPositives(arr2, arr2.length);
 
         assertArrayEquals(expected2, finalArray);
     }

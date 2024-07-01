@@ -32,7 +32,9 @@ public class RadixSortNegativesManager {
         nonNegativeArray = Arrays.copyOf(nonNegativeArray, posCount); // Trim array to actual size
     }
 
-    public static void sortNegatives() {
+    public static Integer[] sortNegativesAndPositives(Integer[] mainArray, int length) {
+        negativeSeparator(mainArray, length);
+
         if (negCount > 0) {
             // Convert negative values to positive, sort, then revert to negative
             for (int i = 0; i < negCount; i++) {
@@ -43,9 +45,15 @@ public class RadixSortNegativesManager {
                 negativeArray[i] = -negativeArray[i];
             }
         }
+
+        if (posCount > 0) {
+            RadixSortManager.radixSorter(nonNegativeArray, nonNegativeArray.length);
+        }
+
+        return mergeNegativesAndPositives();
     }
 
-    public static Integer[] mergeNegatives() {
+    private static Integer[] mergeNegativesAndPositives() {
         Integer[] mergedArray = new Integer[negativeArray.length + nonNegativeArray.length];
 
         int p = 0;
@@ -58,6 +66,6 @@ public class RadixSortNegativesManager {
             mergedArray[p++] = integer;
         }
 
-        return Arrays.copyOf(mergedArray, p); // Trim merged array to actual size
+        return mergedArray;
     }
 }

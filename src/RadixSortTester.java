@@ -26,29 +26,12 @@ public class RadixSortTester {
 
             Integer[] mainArrayCopy = Arrays.copyOf(mainArray, mainArray.length);  // Used Arrays.copyOf to create a copy of the array
 
-            boolean containsNegatives = false;
-            for (int i = 0; i < length; i++) {
-                if (mainArray[i] < 0) {
-                    containsNegatives = true;
-                    break;
-                }
-            }
+            Integer[] finalArray = RadixSortNegativesManager.sortNegativesAndPositives(mainArray, length);
 
-            if (containsNegatives) {
-                RadixSortNegativesManager.negativeSeparator(mainArray, length);
-                RadixSortNegativesManager.sortNegatives();
-                Integer[] finalArray = RadixSortNegativesManager.mergeNegatives();
-                System.out.print("Unsorted array: ");
-                RadixSortManager.arrayPrint(mainArrayCopy, length);
-                System.out.print("Sorted array: ");
-                RadixSortManager.arrayPrint(finalArray, finalArray.length);  // Use finalArray.length
-            } else {
-                RadixSortManager.radixSorter(mainArray, length);
-                System.out.print("Unsorted array: ");
-                RadixSortManager.arrayPrint(mainArrayCopy, length);
-                System.out.print("Sorted array: ");
-                RadixSortManager.arrayPrint(mainArray, length);
-            }
+            System.out.print("Unsorted array: ");
+            RadixSortManager.arrayPrint(mainArrayCopy, length);
+            System.out.print("Sorted array: ");
+            RadixSortManager.arrayPrint(finalArray, finalArray.length);
         } catch (NumberFormatException e) {
             System.out.println("Please enter valid integers.");
         }
