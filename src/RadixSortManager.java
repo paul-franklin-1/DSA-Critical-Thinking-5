@@ -1,9 +1,15 @@
 import java.util.Arrays;
 
+/**
+ * Manages the radix sort operations.
+ */
 public class RadixSortManager {
 
     /**
-     * Prints array of Integer values.
+     * Prints an array of Integer values.
+     *
+     * @param mainArray the array to print
+     * @param length the length of the array
      */
     static void arrayPrint(Integer[] mainArray, int length) {
         if (mainArray == null) {
@@ -16,6 +22,13 @@ public class RadixSortManager {
         System.out.println();
     }
 
+    /**
+     * Sorts the array based on the digit represented by exp.
+     *
+     * @param mainArray the array to sort
+     * @param length the length of the array
+     * @param exp the exponent representing the digit to sort by
+     */
     static void digitSort(Integer[] mainArray, int length, int exp) {
         if (mainArray == null) {
             System.out.println("mainArray cannot be null.");
@@ -43,8 +56,10 @@ public class RadixSortManager {
     }
 
     /**
-     * Central radix sort method that uses int value returned by arrayMax method
-     * and Integer array returned by digitSort method
+     * Performs radix sort on the given array.
+     *
+     * @param array the array to sort
+     * @param length the length of the array
      */
     static void radixSorter(Integer[] array, int length) {
         if (array == null || length == 0) {  // Handle null and empty arrays
@@ -58,6 +73,10 @@ public class RadixSortManager {
 
     /**
      * Finds the maximum value in an array of Integer values.
+     *
+     * @param array the array to search
+     * @param length the length of the array
+     * @return the maximum value in the array
      */
     static int arrayMax(Integer[] array, int length) {
         if (array == null || length == 0) {

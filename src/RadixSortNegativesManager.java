@@ -1,11 +1,20 @@
 import java.util.Arrays;
 
+/**
+ * Manages the separation, sorting, and merging of negative and non-negative integers for radix sort.
+ */
 public class RadixSortNegativesManager {
     private static Integer[] negativeArray;
     public static Integer[] nonNegativeArray;
     private static int negCount = 0;
     private static int posCount = 0;
 
+    /**
+     * Separates the negative and non-negative integers in the given array.
+     *
+     * @param mainArray the array to separate
+     * @param length the length of the array
+     */
     public static void negativeSeparator(Integer[] mainArray, int length) {
         if (mainArray == null || length == 0) {
             negativeArray = new Integer[0];
@@ -32,6 +41,13 @@ public class RadixSortNegativesManager {
         nonNegativeArray = Arrays.copyOf(nonNegativeArray, posCount); // Trim array to actual size
     }
 
+    /**
+     * Sorts both negative and non-negative integers in the given array.
+     *
+     * @param mainArray the array to sort
+     * @param length the length of the array
+     * @return the sorted array with negative and non-negative integers
+     */
     public static Integer[] sortNegativesAndPositives(Integer[] mainArray, int length) {
         negativeSeparator(mainArray, length);
 
@@ -53,6 +69,11 @@ public class RadixSortNegativesManager {
         return mergeNegativesAndPositives();
     }
 
+    /**
+     * Merges the sorted negative and non-negative integers.
+     *
+     * @return the merged array of sorted negative and non-negative integers
+     */
     private static Integer[] mergeNegativesAndPositives() {
         Integer[] mergedArray = new Integer[negativeArray.length + nonNegativeArray.length];
 

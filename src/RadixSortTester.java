@@ -8,7 +8,9 @@ import java.util.Scanner;
  */
 public class RadixSortTester {
     /**
-     * main method and test entry point
+     * main method and test entry point.
+     *
+     * @param args the command line arguments
      */
     public static void main(String[] args) {
         Integer[] mainArray = new Integer[10];
